@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mixo App Style</title>
+<!-- Preview only: apps bundle the font locally instead of loading Google Fonts. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="base.css">
+<style>
+  html, body { height: 100%; }
+  body { display: grid; grid-template-rows: var(--header-h) 1fr var(--footer-h); }
+  .ws { display: grid; grid-template-columns: var(--panel-left) 1fr var(--panel-right); min-height: 0; }
+  .left { border-right: 1px solid var(--line); }
+  .right { border-left: 1px solid var(--line); }
+  .vp { background: var(--viewport-bg); display: grid; place-items: center; color: var(--muted); }
+  .stack > * + * { margin-top: var(--gap); }
+  .stack .primary, .stack .danger { width: 100%; }
+  .hdr-r { display: flex; gap: 8px; align-items: center; }
+  .segmented.lang button { padding: 0 8px; }
+  @media (max-width: 760px) {
+    .ws { grid-template-columns: 1fr; grid-template-rows: 40vh auto auto; }
+    .vp { order: -1; }
+    .left, .right { border: 0; border-top: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>MIXO APP</h1>
+  <div class="hdr-r">
+    <div class="segmented lang"><button aria-pressed="true">EN</button><button>日本語</button><button>繁中</button></div>
+  </div>
+</header>
+<div class="ws">
+  <aside class="panel left">
+    <section>
+      <h3>Objects</h3>
+      <ul class="list">
+        <li class="current selected"><span class="badge">A</span>dragon_bust.stl<small>182k</small></li>
+        <li><span class="badge">B</span>base_plate.stl<small>4k</small></li>
+        <li><span class="badge">C</span>bracket.stl<small>12k</small></li>
+      </ul>
+    </section>
+  </aside>
+  <main class="vp">3D viewport</main>
+  <aside class="panel right">
+    <section class="stack">
+      <h3>Preset</h3>
+      <div class="segmented"><button>Light</button><button aria-pressed="true">Middle</button><button>Heavy</button></div>
+      <label class="field-row"><span>Contact Ø</span><span class="number"><input value="0.40"><small>mm</small></span></label>
+      <label class="field-row"><span>Column Ø</span><span class="number"><input value="1.20"><small>mm</small></span></label>
+      <label class="check"><input type="checkbox" checked> Raft</label>
+      <details><summary>Contact tip</summary>
+        <label class="field-row"><span>Depth</span><span class="number"><input value="0.20"><small>mm</small></span></label>
+      </details>
+      <div class="progress-track"><div class="progress-fill" style="width:62%"></div></div>
+      <button class="primary">Generate supports</button>
+      <button class="danger">Delete supports</button>
+    </section>
+  </aside>
+</div>
+<footer><span>2 objects</span><span>182,416 tris</span></footer>
+</body>
+</html>
