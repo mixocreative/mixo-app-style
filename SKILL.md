@@ -45,6 +45,29 @@ brown accent). Do not borrow its palette, fonts or theme toggle for an app.
 - **Destructive:** `--danger` outline + text. Never a filled red, never hover-to-fill.
 - Status colours (`--danger/--warning/--success/--info`) are muted text/icon colours; banners use a faint tint.
 
+## 3D viewport tools and modes
+
+From mixosupports (Support Edit Mode, view toggles). Lay users first.
+
+- **View controls** (e.g. Tips only, Bottom view, Fit view): a small group of plain word buttons
+  floating at the viewport's top right, under the mode's own toggle. A toggle that is on = ink fill.
+  Move the group (e.g. to bottom right) rather than let a mode bar cover it.
+- **A tool mode** gets a red hairline frame round the viewport, a badge top-left naming the mode and
+  the current tool in words ("Click supports to select"), and one bar top-right: tool segmented
+  control → that tool's options → contextual actions → **Done** (the mode's one primary).
+- **Contextual actions** appear only when they apply: "{n} selected" (muted count) + actions.
+  Delete there is still `.danger` outline, never a red fill; Clear is a plain button.
+- **Input:** never need a key held while dragging, and no right-drag. Every shortcut (Shift/Ctrl+click,
+  Delete, Esc) also has a visible button. For brush-like tools, where the drag starts decides: on the
+  object = the tool, on empty space = orbit as always. Show it with the cursor: tool ring/icon only
+  over the object.
+- **Names:** two tools with similar gestures get different words. "Paint / Erase / Brush" only for
+  marking a surface; "Select / Drag over / Size" for picking objects. Never reuse one for the other.
+- **3D marks are content, not UI accent:** red `#7f0019` marks selected or about-to-be-removed items
+  (solid = selected, see-through = preview under the pointer). A different kind of mark gets one
+  other colour and one meaning (mixosupports: deep blue `#1d3461` layer = no-support zones on the
+  surface). Mark the whole object (e.g. the whole support body), not a dot near it.
+
 ## New app
 
 1. Copy `tokens.css` then `base.css` (in that order) into the app.
@@ -89,5 +112,8 @@ Keep the old look as **Original**; add **New** = this style.
 | Loading Google Fonts at runtime | local woff2 |
 | Muted / uppercase-small group titles that look like body | ink 700 on a sunken band |
 | Faint `+`/`−` at the right of a collapsible | left chevron on the heading band |
+| Delete as a primary (red-filled) button in a tool bar | `.danger` outline; Done stays the one primary |
+| Shift/Alt+drag as the only way to box/brush select | a visible tool button; drag from the object |
+| "Brush" for both surface painting and selecting | Paint/Erase for surfaces, Select/Drag over for picking |
 
 Preview of the components: open `preview.html`.
