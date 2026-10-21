@@ -48,10 +48,20 @@ brown accent). Do not borrow its palette, fonts or theme toggle for an app.
 ## Adding to an existing app (style switch)
 
 Keep the old look as **Original**; add **New** = this style.
-- Scope every override under `:root[data-ui-style="new"]`; remap the app's existing tokens to these
-  values instead of editing component CSS. Original must stay pixel-identical.
-- Set the attribute before first paint (inline script or boot code) from a versioned localStorage
-  key, e.g. `<app>-ui-style-v1` → `{ v: 1, style }`, try/catch guarded. Default `new`.
+- One extra stylesheet, linked last. Scope every rule under `:root:not([data-ui-style="original"])`
+  so New is the default even before JS runs; remap the app's existing tokens first, then override
+  only what tokens miss. Add a test that fails on any unscoped selector. Original stays pixel-identical.
+- Map the app's generic accent token to **ink** and paint red by name (primary buttons, progress,
+  current marker); a red accent token leaks red into every icon, outline and checkbox.
+- Apply the stored choice from a versioned localStorage key, e.g. `<app>-ui-style-v1` →
+  `{ v: 1, style }`, try/catch guarded, in the earliest script the CSP allows (often a `<head>`
+  module, not inline).
+- Panel widths set by JS (workspace presets, resize handles) ignore CSS variables: give the JS
+  per-style defaults and remember widths per style so Dense sizes never leak into Original.
+- Breakpoint-specific grids: scope density overrides to the same media queries the app uses, or
+  phone/tablet layouts break.
+- Bundled fonts must never inline as `data:` (strict CSP blocks them; set the bundler's inline
+  limit to false for fonts). Run the app's packaged/Electron smoke.
 - Switch lives next to the language picker; labels translated.
 - A 3D-viewport glass HUD keeps its glass material (tint, sheen, shadow) but takes the font, density
   and ink/red states.
