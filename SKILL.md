@@ -27,6 +27,15 @@ brown accent). Do not borrow its palette, fonts or theme toggle for an app.
 | Shadows | none (only exception: a 3D-viewport glass HUD) |
 | Theme | light only — no dark mode unless the owner asks |
 
+## Group headings and collapsibles
+
+- A group heading (`.panel h3`, `summary`) must never look like body text: **ink, weight 700,
+  tracked .06em, on a sunken band** (`--row` + 2px tall, 2px radius). Muted or same-weight
+  headings blur into the fields under them.
+- Collapsible groups use the same band plus a **chevron on the left** (right = closed, down =
+  open, turns in `--dur`) and hover → `--line`. No faint `+ / −` at the far right: users miss it.
+- Counts in a heading (`.count`) stay weight 400, muted.
+
 ## Colour roles (most common mistake)
 
 - **Red:** the one primary action per view, progress fill, number-field focus underline, the single
@@ -39,7 +48,7 @@ brown accent). Do not borrow its palette, fonts or theme toggle for an app.
 ## New app
 
 1. Copy `tokens.css` then `base.css` (in that order) into the app.
-2. Bundle the font locally (apps run offline/Electron): Zen Kaku Gothic New woff2, weights 400 + 500
+2. Bundle the font locally (apps run offline/Electron): Zen Kaku Gothic New woff2, weights 400 + 500 + 700 (700 is for group headings only)
    only, SIL OFL 1.1 — ship the licence file. Add to the service-worker cache if any.
 3. Use `base.css` classes: `.primary`, `.danger`, `.segmented`, `.field-row` + `.number`, `.check`,
    `details/summary`, `.list li.selected/.current`, `.progress-*`, `header`, `footer`, `.panel section`.
@@ -78,5 +87,7 @@ Keep the old look as **Original**; add **New** = this style.
 | Five background shades | paper / surface / sunken |
 | Invented dark theme | light only |
 | Loading Google Fonts at runtime | local woff2 |
+| Muted / uppercase-small group titles that look like body | ink 700 on a sunken band |
+| Faint `+`/`−` at the right of a collapsible | left chevron on the heading band |
 
 Preview of the components: open `preview.html`.

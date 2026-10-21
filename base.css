@@ -56,7 +56,13 @@ footer {
 .panel { padding: var(--pad); overflow: auto; background: var(--paper); scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
 .panel section { padding: var(--section) 0; border-top: 1px solid var(--line); }
 .panel section:first-of-type { border-top: 0; padding-top: 0; }
-.panel h3 { margin: 0 0 var(--gap); font-size: var(--fs-xs); font-weight: 500; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+/* Group heading: must never read like body text. Ink on a sunken band, bold, tracked. */
+.panel h3 {
+  display: flex; align-items: center; gap: 6px; min-height: calc(var(--row) + 2px); margin: 0 0 var(--gap); padding: 0 6px;
+  background: var(--sunken); border-radius: var(--radius);
+  font-size: var(--fs-md); font-weight: 700; color: var(--ink); letter-spacing: .06em;
+}
+.panel h3 .count { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* Field rows: label left, value right, underline numbers. */
 .field-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: var(--row); font-size: var(--fs-md); }
@@ -73,12 +79,24 @@ footer {
 .check { display: flex; gap: 8px; align-items: center; min-height: var(--row); cursor: pointer; }
 .check input { accent-color: var(--ink); width: 12px; height: 12px; margin: 0; }
 
-/* Collapsible section */
-details { border-top: 1px solid var(--line); margin-top: var(--gap); }
-summary { display: flex; justify-content: space-between; align-items: center; height: var(--row); font-weight: 500; cursor: pointer; list-style: none; }
+/* Collapsible group: the heading band plus a chevron (right = closed, down = open).
+   Never a faint +/− at the far end: users miss it. */
+details { margin-top: var(--section); }
+summary {
+  display: flex; align-items: center; gap: 6px; min-height: calc(var(--row) + 2px); padding: 0 6px;
+  background: var(--sunken); border-radius: var(--radius);
+  font-size: var(--fs-md); font-weight: 700; color: var(--ink); letter-spacing: .06em;
+  cursor: pointer; list-style: none; user-select: none;
+}
+summary:hover { background: var(--line); }
 summary::-webkit-details-marker { display: none; }
-summary::after { content: '+'; color: var(--muted); font-weight: 400; }
-details[open] > summary::after { content: '−'; }
+summary::before {
+  content: ''; flex: none; width: 5px; height: 5px; margin: 0 2px 0 1px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg); transition: transform var(--dur);
+}
+details[open] > summary::before { transform: rotate(45deg); }
+details[open] > summary { margin-bottom: var(--gap); }
 
 /* Lists: selected = sunken, current item = red marker. */
 .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }

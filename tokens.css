@@ -32,7 +32,7 @@
   --font-sans: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif;
   --font-sans-tw: 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Zen Kaku Gothic New', system-ui, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  --fs-xs: 10.5px;      /* section labels (uppercase, tracked) */
+  --fs-xs: 10.5px;      /* tiny captions, badges */
   --fs-sm: 11px;        /* captions, units, status bar */
   --fs-md: 11.5px;      /* body, controls */
   --fs-lg: 13px;        /* panel titles, brand */
