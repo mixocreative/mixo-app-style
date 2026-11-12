@@ -51,6 +51,11 @@
       <div class="segmented"><button>Light</button><button aria-pressed="true">Middle</button><button>Heavy</button></div>
       <label class="field-row"><span>Contact Ø</span><span class="number"><input value="0.40"><small>mm</small></span></label>
       <label class="field-row"><span>Column Ø</span><span class="number"><input value="1.20"><small>mm</small></span></label>
+      <!-- Every unit the tools actually use, not just "mm". The page showed mm alone, so a unit
+           label clipped by 4px went unseen; these three are the widest and the narrowest. -->
+      <label class="field-row"><span>Overhang</span><span class="number"><input value="35"><small>deg</small></span></label>
+      <label class="field-row"><span>Density</span><span class="number"><input value="60"><small>%</small></span></label>
+      <label class="field-row"><span>Lift speed</span><span class="number"><input value="4.0"><small>mm/s</small></span></label>
       <label class="check"><input type="checkbox" checked> Raft</label>
       <details><summary>Contact tip</summary>
         <label class="field-row"><span>Depth</span><span class="number"><input value="0.20"><small>mm</small></span></label>

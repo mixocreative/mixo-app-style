@@ -76,6 +76,13 @@ From mixosupports (Support Edit Mode, view toggles). Lay users first.
 3. Use `base.css` classes: `.primary`, `.danger`, `.segmented`, `.field-row` + `.number`, `.check`,
    `details/summary`, `.list li.selected/.current`, `.progress-*`, `header`, `footer`, `.panel section`.
 4. Labels must fit at 11.5px in en / ja / zh-Hant; long labels wrap the value to its own line, never clip.
+5. **Unit labels (`.number small`) size to their text, never to a fixed width.** `.number` is a flex
+   row, so a `width` there is a basis `flex-shrink` can squeeze further — which is how a 16px unit
+   box clipped `mm` (20.4px) and cut `mm/s` down to `mm/` in every app that copied this file. The
+   rule is `flex: none` + `white-space: nowrap`, with `min-width: 2em` as the floor that keeps the
+   input column aligned. Measure a new unit before adding it: at `--fs-sm` the set is `%` 10.1px,
+   `µm` 17.1, `deg` 19.0, `mm` 20.4, `mm/s` 29.8. Anything above 2em steps its own row out a little,
+   which is correct — losing characters never is.
 
 ## Adding to an existing app (style switch)
 
@@ -115,5 +122,6 @@ Keep the old look as **Original**; add **New** = this style.
 | Delete as a primary (red-filled) button in a tool bar | `.danger` outline; Done stays the one primary |
 | Shift/Alt+drag as the only way to box/brush select | a visible tool button; drag from the object |
 | "Brush" for both surface painting and selecting | Paint/Erase for surfaces, Select/Drag over for picking |
+| A fixed `width` on a unit label, which clips `mm` and `mm/s` | `flex: none` + `nowrap`, `min-width: 2em` as the alignment floor |
 
 Preview of the components: open `preview.html`.
